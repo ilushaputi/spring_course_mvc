@@ -2,6 +2,7 @@ package com.ilyaputintsev.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,18 +18,27 @@ public class MyController {
     }
 
     @RequestMapping("/askDetails")
-    public String askEmployeeDetails(){
+    public String askEmployeeDetails(Model model){
+        /*Employee employee = new Employee();
+        employee.setName("Ivan");
+        employee.setSurName("Pupkin");
+        employee.setSalary(500);*/
+
+        model.addAttribute("employee", new Employee());
+
         return "aks-emp-details-view";
     }
 
     @RequestMapping("/showDetails")
-    public String showEmpDetails(@RequestParam("employeeName") String empName, Model model){
+    public String showEmpDetails(@ModelAttribute("employee") Employee employee){
+        String name = employee.getName();
+        employee.setName("Mr " + name);
 
-        empName = "Mr. " + empName + "!!!";
+        String surname = employee.getSurName();
+        employee.setSurName(surname + "!!!");
 
-        model.addAttribute("nameAttribute", empName);
-
-        model.addAttribute("description", " - udemy student");
+        int sal = employee.getSalary();
+        employee.setSalary(sal*10);
 
 
         return "show-emp-details-view";
