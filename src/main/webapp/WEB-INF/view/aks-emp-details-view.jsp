@@ -28,6 +28,10 @@
     MB <form:radiobutton path="carBrand" value="Mersedes-Benz"/>--%>
     <form:radiobuttons path="carBrand" items="${employee.carBrands}"/>
     <br><br>
+    Foreign Language (s)
+    <form:checkboxes path="languages" items="${employee.languageMap}"/>
+    
+    <br><br>
 
     <input type="submit" value="OK">
 </form:form>
