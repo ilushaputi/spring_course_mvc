@@ -30,8 +30,10 @@ Language (s):
     <c:forEach var="lang" items="${employee.languageMap}"/>
 
     <li>${lang}</li>
-    <br><br><br>
+    <br><br>
 </ul>
+
+Phone number: ${employee.phoneNumber}
 
 </body>
 
